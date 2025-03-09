@@ -1,0 +1,30 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Pages
+        uses: actions/setup-pages@v1
+
+      - name: Build site
+        run: |
+          # Add commands to build your site here
+          # For example, if using Jekyll:
+          # bundle install
+          # bundle exec jekyll build --destination site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          build_dir: ./site  # Adjust if your output directory is different
